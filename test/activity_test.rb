@@ -17,4 +17,9 @@ class ActivityTest < MiniTest::Test
     assert_equal ({}), @activity.participants
   end
 
+  def test_it_can_add_participants
+    @activity.add_participant("Maria", 20)
+    assert_equal ({"Maria" => 20}), @activity.participants
+  end
+
 end
