@@ -22,10 +22,9 @@ class Activity
   end
 
   def owed
-    owed = Hash.new
-    @participants.each do |name, cost|
+    @participants.reduce({}) do |owed, (name, cost)|
       owed[name] = split - cost
+      owed
     end
-    owed
   end
 end
