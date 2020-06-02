@@ -15,4 +15,9 @@ class ReunionTest < MiniTest::Test
     assert_equal "1406 BE", @reunion.name
 	end
 
+  def test_it_starts_with_no_activities_until_added
+    assert_equal [], @reunion.activities
+    @reunion.add_activity(@activity_1)
+    assert_equal [@activity_1], @reunion.activities
+  end
 end
