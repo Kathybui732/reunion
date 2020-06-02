@@ -22,6 +22,19 @@ class ReunionTest < MiniTest::Test
     assert_equal [@activity_1], @reunion.activities
   end
 
+  def test_total_cost
+    @activity_1.add_participant("Maria", 20)
+    @activity_1.add_participant("Luther", 40)
+    @reunion.add_activity(@activity_1)
+    assert_equal 60, @reunion.total_cost
+    @activity_2 = Activity.new("Drinks")
+    @activity_2.add_participant("Maria", 60)
+    @activity_2.add_participant("Luther", 60)
+    @activity_2.add_participant("Louis", 0)
+    @reunion.add_activity(@activity_2)
+    assert_equal 180, @reunion.total_cost
+  end
+
   def test_breakout
     @activity_1.add_participant("Maria", 20)
     @activity_1.add_participant("Luther", 40)
@@ -35,5 +48,20 @@ class ReunionTest < MiniTest::Test
     @reunion.total_cost
     expected = {"Maria" => -10, "Luther" => -30, "Louis" => 40}
     assert_equal expected, @reunion.breakout
+  end
+
+  def test_summary
+    @activity_1.add_participant("Maria", 20)
+    @activity_1.add_participant("Luther", 40)
+    @reunion.add_activity(@activity_1)
+    @reunion.total_cost
+    @activity_2 = Activity.new("Drinks")
+    @activity_2.add_participant("Maria", 60)
+    @activity_2.add_participant("Luther", 60)
+    @activity_2.add_participant("Louis", 0)
+    @reunion.add_activity(@activity_2)
+    @reunion.total_cost
+    @reunion.breakout
+    assert_equal "Maria: -10\nLuther: -30\nLouis: 40", @reunion.summary
   end
 end
