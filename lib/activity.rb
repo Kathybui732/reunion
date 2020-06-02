@@ -16,4 +16,8 @@ class Activity
       acc += cost
     end
   end
+
+  def split
+    total_cost / @participants.count
+  end
 end
