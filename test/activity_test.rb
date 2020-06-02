@@ -22,4 +22,7 @@ class ActivityTest < MiniTest::Test
     assert_equal ({"Maria" => 20}), @activity.participants
   end
 
+  def test_total_cost
+    assert_equal 20, @activity.total_cost
+  end
 end
