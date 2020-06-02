@@ -6,4 +6,8 @@ class Activity
     @name = name
     @participants = {}
   end
+
+  def add_participant(name, age)
+    @participants[name] = age
+  end
 end
