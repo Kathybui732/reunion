@@ -13,4 +13,8 @@ class ActivityTest < MiniTest::Test
     assert_equal "Brunch", @activity.name
 	end
 
+  def test_it_starts_with_no_participants
+    assert_equal ({}), @activity.participants
+  end
+
 end
